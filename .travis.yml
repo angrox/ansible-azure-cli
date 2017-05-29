@@ -22,7 +22,7 @@ script:
   # Run ansible playbook
   - sudo docker exec centos-${OS_VERSION} ansible-playbook /etc/ansible/roles/azure-cli/tests/test.yml
   # Test azure-cli by output the version string
-  - sudo docker exec centos-${OS_VERSION} az --version
+  - sudo docker exec centos-${OS_VERSION} /usr/local/bin/python-wrapper az --version
 
 after_script:
   - sudo docker stop centos-${OS_VERSION}
