@@ -1,0 +1,7 @@
+# SCL Python version.
+# Currently supported version: 34, 35
+# (3.4.x and 3.5.x)
+scl_python_version: 35
+
+# Upgrade azure-cli?
+upgrade_azure_cli: false
