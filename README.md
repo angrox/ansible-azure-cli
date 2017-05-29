@@ -8,7 +8,7 @@ This role installs the Azure CLI on a CentOS/RHEL maschine using python pip. The
 * upgrade_azure_cli: Call pip with --upgrade. Default to false
 
 ## Usage
-Example playbook
+Example playbook:
 ```
 - hosts: all
   roles:
