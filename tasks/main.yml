@@ -1,3 +1,12 @@
+
+- name: Check for SCL repo ...
+  package:
+    name: centos-release-scl-rh
+    state: present
+  become: true
+  tags:
+    - az-prereq
+
 - name: Prereqs for Azure CLI. Attention! This installs a compiler on the system
   package:
     name: "{{ item }}"
