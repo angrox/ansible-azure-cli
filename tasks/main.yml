@@ -31,6 +31,12 @@
   tags:
     - az-prereq
 
+- name: Upgrade pip
+  command: /usr/local/bin/python-wrapper pip install --upgrade pip
+  become: true
+  tags:
+    - az-install
+
 - name: Install azure-cli and all dependencies
   command: /usr/local/bin/python-wrapper pip install azure-cli
   become: true
