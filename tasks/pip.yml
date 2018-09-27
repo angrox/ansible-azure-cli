@@ -1,0 +1,52 @@
+
+- name: Method PIP - Check for SCL repo ...
+  package:
+    name: centos-release-scl-rh
+    state: present
+  become: true
+  tags:
+    - az-prereq
+
+    - name: Method PIP - prereqs for Azure CLI. Attention! This installs a compiler on the system
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - libffi-devel
+    - gcc
+    - openssl-devel
+    - "rh-python{{ scl_python_version }}"
+  become: true
+  tags:
+    - az-prereq
+
+- name: Method PIP - Install python-wrapper helper script
+  template:
+    src: python-wrapper.sh.j2
+    dest: /usr/local/bin/python-wrapper
+    owner: root
+    group: root
+    mode: 0755
+  become: true
+  tags:
+    - az-prereq
+
+- name: Method PIP - Upgrade pip
+  command: /usr/local/bin/python-wrapper pip install --upgrade pip
+  become: true
+  tags:
+    - az-install
+
+- name: Method PIP - Install azure-cli and all dependencies
+  command: /usr/local/bin/python-wrapper pip install azure-cli
+  become: true
+  tags:
+    - az-install
+  when: upgrade_azure_cli|bool == false
+
+- name: Method PIP - Upgrade azure-cli
+  command: /usr/local/bin/python-wrapper pip install --upgrade azure-cli
+  become: true
+  tags:
+    - az-install
+  when: upgrade_azure_cli|bool == true

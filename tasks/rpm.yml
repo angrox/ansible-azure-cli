@@ -1,0 +1,20 @@
+- name: Method RPM - Add Microsoft repository GPG key.
+  rpm_key:
+    key: https://packages.microsoft.com/keys/microsoft.asc
+    state: present
+  become: true
+
+- name: Method RPM - Add Microsoft repo for Azure CLI
+  yum_repository:
+    name: azure-cli
+    description: Microsoft Azure CLI
+    baseurl: https://packages.microsoft.com/yumrepos/azure-cli
+    gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+    gpgcheck: yes
+  become: true
+
+- name: Method RPM - Install Azure CLI (az)
+  package:
+    name: "azure-cli"
+    state: latest
+  become: true
