@@ -7,7 +7,7 @@
   tags:
     - az-prereq
 
-    - name: Method PIP - prereqs for Azure CLI. Attention! This installs a compiler on the system
+- name: Method PIP - prereqs for Azure CLI. Attention! This installs a compiler on the system
   package:
     name: "{{ item }}"
     state: present
