@@ -1,9 +1,9 @@
 - hosts: 127.0.0.1
   connection: local
   roles:
-    - { azure-cli, installation_method: "rpm" }
+    - { role: azure-cli, installation_method: "rpm" }
 
 - hosts: 127.0.0.1
   connection: local
   roles:
-    - { azure-cli, installation_method: "pip" }
+    - { role: azure-cli, installation_method: "pip" }
