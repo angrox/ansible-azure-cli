@@ -1,7 +1,12 @@
+# installation_method: "rpm" or "pip".
+# rpm gets the cli from the official repository
+# pip installs the application via python3 pip
+installation_method: "rpm"
+
+# If installation_method is pip these settings are needed
 # SCL Python version.
 # Currently supported version: 34, 35
 # (3.4.x and 3.5.x)
 scl_python_version: 35
-
 # Upgrade azure-cli?
 upgrade_azure_cli: false

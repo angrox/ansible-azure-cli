@@ -1,52 +1,5 @@
+- include: tasks/pip.yml
+  when: installation_method == "pip"
 
-- name: Check for SCL repo ...
-  package:
-    name: centos-release-scl-rh
-    state: present
-  become: true
-  tags:
-    - az-prereq
-
-- name: Prereqs for Azure CLI. Attention! This installs a compiler on the system
-  package:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - libffi-devel
-    - gcc
-    - openssl-devel
-    - "rh-python{{ scl_python_version }}"
-  become: true
-  tags:
-    - az-prereq
-
-- name: Install python-wrapper helper script
-  template:
-    src: python-wrapper.sh.j2
-    dest: /usr/local/bin/python-wrapper
-    owner: root
-    group: root
-    mode: 0755
-  become: true
-  tags:
-    - az-prereq
-
-- name: Upgrade pip
-  command: /usr/local/bin/python-wrapper pip install --upgrade pip
-  become: true
-  tags:
-    - az-install
-
-- name: Install azure-cli and all dependencies
-  command: /usr/local/bin/python-wrapper pip install azure-cli
-  become: true
-  tags:
-    - az-install
-  when: upgrade_azure_cli|bool == false
-
-- name: Upgrade azure-cli
-  command: /usr/local/bin/python-wrapper pip install --upgrade azure-cli
-  become: true
-  tags:
-    - az-install
-  when: upgrade_azure_cli|bool == true
+- include: tasks/rpm.yml
+  when: installation_method == "rpm"
