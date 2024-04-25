@@ -1,0 +1,17 @@
+- name: Method apt - Add Microsoft repository GPG key.
+  ansible.builtin.get_url:
+    url: https://packages.microsoft.com/keys/microsoft.asc
+    dest: /etc/apt/keyrings/microsoft.asc
+  become: true
+    
+- name: Method apt - Add Microsoft repo for Azure CLI
+  ansible.builtin.apt_repository:
+    repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/microsoft.asc] https://packages.microsoft.com/repos/azure-cli/ {{ ansible_distribution_release }} main"
+  become: true
+
+- name: Method apt - Install Azure CLI (az)
+  ansible.builtin.apt:
+    name: "azure-cli"
+    state: latest
+    update_cache: true
+  become: true
