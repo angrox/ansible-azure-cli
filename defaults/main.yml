@@ -1,5 +1,6 @@
-# installation_method: "rpm" or "pip".
-# rpm gets the cli from the official repository
+# installation_method: "rpm" or "apt" or "pip".
+# rpm gets the cli from the official repository via rpm
+# apt gets the cli from the official repository via apt
 # pip installs the application via python3 pip
 installation_method: "rpm"
 

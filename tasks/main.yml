@@ -3,3 +3,6 @@
 
 - include: tasks/rpm.yml
   when: installation_method == "rpm"
+
+- include: tasks/apt.yml
+  when: installation_method == "apt"
